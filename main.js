@@ -28,12 +28,43 @@ function Loop()
         testificate.update((1 / quality), i == 0);
     }
 
-    sl.Render(sl.Text(vec2(40, 290), "Tick : " + tick, albedo(1,1,1,1)));
-
+    sl.Render(sl.Text(vec2(40, 190), "Tick : " + tick, albedo(1,1,1,1)));
+    sl.Render(sl.Text(vec2(40, 220), "Stiffness : " + floor(Stiffness * 100) + "%", albedo(1,1,1,1)));
+    sl.Render(sl.Text(vec2(40, 250), "Increase Stiffness : Press RightArrow key", albedo(1,1,1,1)));
+    sl.Render(sl.Text(vec2(40, 280), "Decrease Stiffness : Press LeftArrow key", albedo(1,1,1,1)));
+    sl.Render(sl.Text(vec2(40, 310), "Move the individual points of the object by dragging them", albedo(0.6,0.6,1,1)));
+    sl.Render(sl.Text(vec2(40.5, 310), "Move the individual points of the object by dragging them", albedo(0.6,0.6,1,1)));
+    
     frameTime = performance.now() - lastPerformance;
-    sl.Render(sl.Text(vec2(40, 200), "DeltaTime : " + frameTime, albedo(1,1,1,1)));
-    sl.Render(sl.Text(vec2(40, 230), "Potential : " + Math.round(1000 / frameTime), albedo(1,1,1,1)));
-    sl.Render(sl.Text(vec2(40, 260), "FPS : " + SGL_FPS, albedo(1,1,1,1)));
+    sl.Render(sl.Text(vec2(40, 100), "DeltaTime : " + frameTime, albedo(1,1,1,1)));
+    sl.Render(sl.Text(vec2(40, 130), "Potential : " + Math.round(1000 / frameTime), albedo(1,1,1,1)));
+    sl.Render(sl.Text(vec2(40, 160), "FPS : " + SGL_FPS, albedo(1,1,1,1)));
+
+    if(sl.key.ArrowRight)
+    {
+        if(Stiffness < 1)
+        {
+            Stiffness += 0.01;
+        }
+        else
+        {
+            sl.Render(sl.Text(vec2(40, 440), "Stiffness cannot be more than 100%", albedo(1,0.3,0.3,1)));
+            sl.Render(sl.Text(vec2(41, 441), "Stiffness cannot be more than 100%", albedo(1,0.2,0.2,1)));
+        }
+    }
+
+    if(sl.key.ArrowLeft)
+    {
+        if(Stiffness > 0.08)
+        {
+            Stiffness -= 0.01;
+        }
+        else
+        {
+            sl.Render(sl.Text(vec2(40, 440), "Stiffness cannot be less than 7%", albedo(1,0.3,0.3,1)));
+            sl.Render(sl.Text(vec2(41, 441), "Stiffness cannot be less than 7%", albedo(1,0.2,0.2,1)));
+        }
+    }
 
     tick ++;
 }
