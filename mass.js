@@ -30,14 +30,14 @@ const createMass = function(pos = vec2())
 
         applyConstraint : function()
         {
-            if(this.pos.y > sl.height - 140)
+            if(this.pos.y > sl.height - 100)
             {
-                this.pos.y = sl.height - 140;
+                this.pos.y = sl.height - 100;
             }
 
-            if(this.pos.y < 160)
+            if(this.pos.y < 0)
             {
-                this.pos.y = 160;
+                this.pos.y = 0;
             }
 
             if(this.pos.x < 0)
@@ -173,5 +173,5 @@ const physicsObject = function(points = [createMass()], sticks = [[0,0]], rest =
 
 const Gravity = vec2(0, 1);
 let locked = null;
-const Stiffness = 0.1;
+let Stiffness = 1;
 const Friction = vec2(0.995);
