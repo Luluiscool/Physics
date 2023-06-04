@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGL Window (v1.0)</title>
+    <script src="SGL.js"></script>
+    <!-- <script src="network.js"></script> -->
+    <style>
+        /* canvas
+        {
+            background-color : rgba(25.5, 25.5, 25.5, 1);
+        } */
+        *
+        {
+            overflow: hidden;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- <script src="verlet.js"></script> -->
+    <!-- <script src="heat.js"></script> -->
+    <!-- <script src="physics.js"></script> -->
+    <script src="mass.js"></script>
+    <script src="main.js"></script>
+    <script>
+        try
+        {
+            Start();
+            let sid=setInterval(()=>{
+                if(!SGL_RUN) return;
+                
+                if(SGL_ExtremeRush){ // If this variables is false by default, it will take `SGL_Threads` ms delay to speed to become normal
+                    const id=setInterval(()=>{
+                        Loop();
+                        SGL_TICK0++;
+                    });
+                    setTimeout(()=>clearInterval(id), SGL_Threads);
+                }else{
+                    Loop();
+                    SGL_TICK0++;
+                }
+            },SGL_DELAY);
+            setInterval(()=>{
+                SGL_FPS=SGL_TICK0;
+                SGL_TICK0=0;
+            },1000);
+        }
+        catch (e)
+        {
+            console.log(e);
+            SGL_ERR = e.message;
+        }
+
+    </script>
+</body>
+</html>
