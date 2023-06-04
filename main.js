@@ -16,8 +16,8 @@ function Loop()
     const lastPerformance = performance.now();
     sl.Ref();
 
-    sl.Render(sl.Rect(vec2(0, 160), vec2(sl.width, sl.height - 300), albedo(0.3,0.6,0.6,1)));
-    sl.Render(sl.Rect(vec2(0, sl.height - 140), vec2(sl.width, 140), albedo(0.8,0.8,0.6,1)));
+    sl.Render(sl.Rect(vec2(0, 0), vec2(sl.width, sl.height - 100), albedo(0.3,0.6,0.6,1)));
+    sl.Render(sl.Rect(vec2(0, sl.height - 100), vec2(sl.width, 100), albedo(0.8,0.8,0.6,1)));
 
     // Implementing stuff here
 
